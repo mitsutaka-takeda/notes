@@ -29,3 +29,23 @@
 
 - [発表動画@Youtube](https://www.youtube.com/watch?v=fX2W3nNjJIo)
 - [C++ Core Guidelines@gitub](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md)
+
+## C++ as a "Live at Head" Language
+### 概要
+- "Live at Head"とは。常に依存しているライブラリの最新(Head)を使用しているエコシステムのこと。
+- Semantic Versioning & 既存パッケージ・マネージャの問題点。
+ - スケールしない。依存のレイヤーが高くなるほど、依存関係を満すことが難しくなる。例えば、libAが、libB&libCに依存していて、libB&libCが異なるバージョンのlibDに依存していると問題が起きる。
+- スケールさせるには、全てのパッケージが最新の状態であれば良い(Live at Head)。
+- Live at Headである条件。
+ - APIの所有者(Library)側がAPIの変更を行うためのツールを用意する。Clientは、そのツールを使用して依存関係をアップデートする。
+ - Abseilの場合は、更新用にclang-tidyを提供する。
+- Clientの更新ツールを実装するために、Library側は互換性のための条件を明確にして、クライアント側はそれに従ったコーディングをする。
+
+### 気になったところ。
+- パッケージ・マネージャが無いことがC++の弱点の1つと言われているが、Live at Headを実現するためには、バイナリでパッケージを管理するマネージャがないことが有利に働く。
+- Software Engineering & Programmingの違い。長い間に渡って使用されるソフトウェアを作るのがエンジニアリング。プログミングは取り敢えず目の前の課題を解決することに注力する。自分がどちらのソフトウェアを作っているのか意識する。
+- Googleでは知識共有のため週に1度tipsを配信しているらしい。レビューの時など、そのtipsを参照する。
+
+### 関連情報
+- [発表動画@Youtube](https://www.youtube.com/watch?v=tISy7EJQPzI)
+- [Abseil](https://abseil.io/)
