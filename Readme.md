@@ -32,7 +32,7 @@
 - [発表動画@Youtube](https://www.youtube.com/watch?v=fX2W3nNjJIo)
 - [C++ Core Guidelines@gitub](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md)
 
-## C++ as a "Live at Head" Language
+## C++ as a "Live at Head" Language by Titus Winters
 ### 概要
 - "Live at Head"とは。常に依存しているライブラリの最新(Head)を使用しているエコシステムのこと。
 - Semantic Versioning & 既存パッケージ・マネージャの問題点。
