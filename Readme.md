@@ -56,3 +56,25 @@
 ### 関連情報
 - [発表動画@Youtube](https://www.youtube.com/watch?v=tISy7EJQPzI)
 - [Abseil](https://abseil.io/)
+
+## Programming with C++ Constraints: Background, Utility, and Gotchas by Walter E. Brown
+### 概要
+- Conceptの紹介。Conceptは要件。Precondition/Narrow&Wide contractなどの用語との比較。
+
+   - 実行時(precondition)/コンパイル時(Concept)
+ 
+- constraintはコンパイル時predicate。Conceptはconstraintの集合。
+- enable_ifとConceptの違い。
+
+   - swapをenable_ifとrequires-clauseで実装してlibc++のis_swappable.pass.cppテストが失敗した。
+   - requires-clauseの導入でconstrainedなほうがオーバーロードで勝つことになったので、enable_ifでambuguityだったケースもそうでなくなることがある。
+
+### 気になったところ
+- semantics的な違いがの影響は最悪コンパイル・エラーになるだけ？もしかしたら呼び出される関数が変わるかも。
+
+### 関連情報
+
+- [発表動画@Youtube](https://www.youtube.com/watch?v=n4ie7tPMXOQ&list=PLHTh1InhhwT6bwIpRk0ZbCA0N2p1taxd6&index=7)
+- [Modern Template Metaprogramming: A Compendium, Part I](https://www.youtube.com/watch?v=Am2is2QCvxY)
+- [Modern Template Metaprogramming: A Compendium, Part II](https://www.youtube.com/watch?v=a0FliKwcwXE)
+
