@@ -78,3 +78,38 @@
 - [Modern Template Metaprogramming: A Compendium, Part I](https://www.youtube.com/watch?v=Am2is2QCvxY)
 - [Modern Template Metaprogramming: A Compendium, Part II](https://www.youtube.com/watch?v=a0FliKwcwXE)
 
+## Meta: Thoughts on generative C++ by Herb Sutter
+### 概要
+
+- Metaclassの紹介。C++でコード生成をプログラムできるようにする仕組み。
+
+   - C++をよりパワフルかつシンプルにするという長期目標から生れたツール。
+   - 現実のコードから何がしたいのか、どのようなツールが使われているか観察。間違ったツールで行なわれている問題を見つける。
+
+- Metaclassの土台となるツール。Reflection/Compile-time code/Injection。
+
+   - Reflectionは、コンパイル時に型情報をクエリできる。
+   - Compile-time codeは、コンパイル時のコーディング方法。
+   - Injectionは、コンパイル時コードの結果からコードを生成できる。
+ 
+- Metaclassの長所。
+
+   - 言語仕様を変更せずに、言語に機能追加ができる。
+   - 自然言語よりコードの方が簡潔に正確に記述できる。
+   
+- Metaclassの応用。
+
+   - interface、value typeなど慣習で守らている規約をコードで表現できる。
+   - Serialization/Deserializationの自動化。
+
+### 気になったところ
+
+- 最近のC++関連の話題で最もエキサイティングな話。応用分野は数えきれないし、コードも簡潔になる。
+- C++23には間にあうか、どうか位の話しだと思う。C++20にはConcpet/Module/Coroutineなどメジャー機能が入る予定なので委員会もそこにフォーカスしそう。
+
+### 関連情報
+
+- [発表動画@Youtube](https://www.youtube.com/watch?v=4AfRAVcThyA)
+- [発表資料@github](https://github.com/CppCon/CppCon2017/blob/master/Keynotes/Meta%20-%20Thoughts%20on%20Generative%20C%2B%2B/Meta%20-%20Thoughts%20on%20Generative%20C%2B%2B%20-%20Herb%20Sutter%20-%20CppCon%202017.pdf)
+- [Compiler Explorer with Metaclass support](https://cppx.godbolt.org/)
+- [Practical Applications of Reflection by Jackie Kay@C++ NOW 2017](https://www.youtube.com/watch?v=VFwGCLPTXmk)
