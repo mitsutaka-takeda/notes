@@ -147,14 +147,14 @@
 - Type predicatesのASTでコンパイル時間はどうなんだろう。
 - std::decayを使ったsimilarの定義がナイス。
 
-  ```c++
-  template <typename S, typename T>
-  using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
-  ```
+```c++
+template <typename S, typename T>
+using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
+ ```
 
 ### 関連情報
 
 - [発表動画@Youtube](https://www.youtube.com/watch?v=PFdWqa68LmA)
-- [STEVE DEWHURST | C++](http://www.stevedewhurst.com/once_weakly.html)
+- [STEVE DEWHURST C++](http://www.stevedewhurst.com/once_weakly.html)
 - [C++ Gotchars: Avoiding Common Problems in Coding and Design](https://www.amazon.com/Gotchas-Avoiding-Common-Problems-Coding/dp/0321125185y)
 - [Making New Friends Idiom](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Making_New_Friends)
