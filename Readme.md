@@ -113,3 +113,48 @@
 - [発表資料@github](https://github.com/CppCon/CppCon2017/blob/master/Keynotes/Meta%20-%20Thoughts%20on%20Generative%20C%2B%2B/Meta%20-%20Thoughts%20on%20Generative%20C%2B%2B%20-%20Herb%20Sutter%20-%20CppCon%202017.pdf)
 - [Compiler Explorer with Metaclass support](https://cppx.godbolt.org/)
 - [Practical Applications of Reflection by Jackie Kay@C++ NOW 2017](https://www.youtube.com/watch?v=VFwGCLPTXmk)
+
+
+## Modern C++ Interfaces: Complexity, Emergent Simplicy, SFINAE, and Second Order Properties by Stephen Dewhurst
+### 概要
+- Interfaceの変遷。
+
+  - Policy-Based Designではクライアントに実装上の決定をさせるIFが流行。Policyでクライアントが実装を自由にカスタマイズできる。
+  - 現在では実装上の決定は実装者側にまかせるIFが主流になってきた。
+  - 実装者の経験と決定をIF/コードに反映させる
+
+- 経験をコードに反映させる。
+
+  - 例えば、配列をコピーするテンプレートを書いて、memcpyで実装。TriviallyCopyableな型でしか動かない実装。
+    これにTriviallyCopyableでない型を渡してバグったとき(経験)、if constexprなどで、NonTriviallyCopyableな型への
+    実装を組込む。
+
+- Semanticsも重要だが、Syntaxも重要
+
+  - templated typedefでSyntaxを簡単に。
+  
+- Self-Identification。
+
+  - 型が自分の機能を相手に伝えるための型。SFINAEでSelf-Identificationを利用してオーバーロードを制限できる。
+  - 標準の関数オブジェクトの`is_transparent`。Dan Saksの`is_enum_container`。
+  
+- Predicate Composition
+
+  - type listとpredicateのcompositionはtemplate variableを使用すると簡単に実装できる。
+  - type predicatesのASTでpredicatesを好きに組合せることができる。
+### 気になったところ
+- C++ Gothaの作者。
+- Type predicatesのASTでコンパイル時間はどうなんだろう。
+- std::decayを使ったsimilarの定義がナイス。
+
+  ```c++
+  template <typename S, typename T>
+  using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
+  ```
+
+### 関連情報
+
+- [発表動画@Youtube](https://www.youtube.com/watch?v=PFdWqa68LmA)
+- [STEVE DEWHURST | C++](http://www.stevedewhurst.com/once_weakly.html)
+- [C++ Gotchars: Avoiding Common Problems in Coding and Design](https://www.amazon.com/Gotchas-Avoiding-Common-Problems-Coding/dp/0321125185y)
+- [Making New Friends Idiom](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Making_New_Friends)
