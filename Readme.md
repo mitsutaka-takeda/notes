@@ -158,3 +158,35 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
 - [STEVE DEWHURST C++](http://www.stevedewhurst.com/once_weakly.html)
 - [C++ Gotchars: Avoiding Common Problems in Coding and Design](https://www.amazon.com/Gotchas-Avoiding-Common-Problems-Coding/dp/0321125185y)
 - [Making New Friends Idiom](https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Making_New_Friends)
+
+## A modern formatting library for C++ by Victor Zverovich
+
+## 概要
+
+- C++のフォーマット(データを文字列に変換)・ライブラリの歴史
+- printfの記法はすばらしいが、型安全ではない(フォーマット定義とデータ型が違うと未定義)。
+- fmtライブラリの紹介。
+
+   - 標準に提案中。
+   - バイナリ・サイズはprintfと同等。
+   - pythonやrustのフォーマットと同様の記法。
+   - AllocationなしのAPIを用意。
+   
+- fmtライブラリの実装について。
+
+   - type erasureでバイナリ・サイズとコンパイル時間を節約。folly::formatと比較してバイナリ・サイズは10分の1くらい。
+   - New Extension API
+
+- clang-tidyでprintfを置き換える？
+
+## 気になったところ
+
+- type erasureはコード・サイズと実行時間のトレード・オフ。
+- New Extension APIで、任意の型をフォーマットする方法を学ぶ。
+
+## 関連情報
+
+- [発表動画@Youtube](https://www.youtube.com/watch?v=ptba_AqFYCM&list=PLHTh1InhhwT6bwIpRk0ZbCA0N2p1taxd6&index=26)
+- [スライド](https://github.com/CppCon/CppCon2017/blob/master/Demos/A%20Modern%20Formatting%20Library%20for%20C%2B%2B/A%20Modern%20Formatting%20Library%20for%20C%2B%2B%20-%20Victor%20Zverovich%20-%20CppCon%202017.pdf)
+- [fmt@github](https://github.com/fmtlib/fmt)
+
