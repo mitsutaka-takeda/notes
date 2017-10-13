@@ -190,3 +190,26 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
 - [スライド](https://github.com/CppCon/CppCon2017/blob/master/Demos/A%20Modern%20Formatting%20Library%20for%20C%2B%2B/A%20Modern%20Formatting%20Library%20for%20C%2B%2B%20-%20Victor%20Zverovich%20-%20CppCon%202017.pdf)
 - [fmt@github](https://github.com/fmtlib/fmt)
 
+# From security to performance to GPU programming by Sergey Zubkov
+
+## 概要
+
+- allocatorの応用分野と仕組みの概要。
+
+  - secure_allocator:安全なメモリ以外にコンテンツが配置されないように。ページ・アウトでファイルにメモリがキャッシュされたりすると危ない。
+  - pool: メモリのフラグメンテーションを防ぐ。
+  - tbb::scalable_allocator: スレッド固有のallocator。メモリ確保のコンテンションが少くなりスケールする。
+  - boost::interprocess::allocator: 共有メモリにメモリを確保。allocatorを適用する場所に注意が必要。`std::scoped_allocator_adaptor`。
+  - boost::compute::pinned_allocator: GPUのメモリ上に確保。
+  
+## 気になったところ
+
+- cppcon 2017でアロケータの話が数件あった。C++17でポリモーフィック・アロケータが出て来てまた盛りあがってるのか。
+- まともなカスタム・アロケータ書いたことないので書いてみたい。
+- allocatorのレポジトリが欲しい。
+
+## 関連情報
+
+- [発表動画@Youtube](https://www.youtube.com/watch?v=HdQ4aOZyuHw)
+- [Windows pagefile security risks and how to avoid them](http://searchenterprisedesktop.techtarget.com/tip/Windows-pagefile-security-risks-and-how-to-avoid-them)
+- [Controlling memory consumption with Intel Threading Building Blocks(Intel TBB) scalable allocator](https://software.intel.com/en-us/articles/controlling-memory-consumption-with-intel-threading-building-blocks-intel-tbb-scalable)
