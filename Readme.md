@@ -213,3 +213,47 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
 - [発表動画@Youtube](https://www.youtube.com/watch?v=HdQ4aOZyuHw)
 - [Windows pagefile security risks and how to avoid them](http://searchenterprisedesktop.techtarget.com/tip/Windows-pagefile-security-risks-and-how-to-avoid-them)
 - [Controlling memory consumption with Intel Threading Building Blocks(Intel TBB) scalable allocator](https://software.intel.com/en-us/articles/controlling-memory-consumption-with-intel-threading-building-blocks-intel-tbb-scalable)
+
+# Fuzz or lose... by Kostya Serebryany
+## 概要
+
+- Fuzzで見つかったバグ
+
+  - OpenSSLのHeartbleedバグは数秒で見つかる
+  - boost regex
+
+- C++はメモリ・バグを作りやすい。
+
+  - バッファ・オーバーフロー
+  - 解放後の領域を使う
+  - etc
+
+- libFuzzerを使うためには。
+
+  - clangでAddress Sanitizerとfuzzerをオンにしてビルド。
+  - Cリンケージで、バイト列を受け取る関数を定義。
+
+- APIに対して使う。
+
+  - APIとはすべてのデータを扱えるべき場所。例えば、外部からの入力とか？
+  - APIは落ちたりしたら駄目。
+
+- OSS-Fuzz: Fuzzing as a Service(Googleで使用しているツール)
+- Structure-aware fuzzing
+
+  - Custom Mutator
+  - Protobufferと連携できる(libprotobuf)
+
+- fuzzerをロジカル・バグの発見に使う。
+
+  - 参照実装と最適実装の違いを発見するのに使える。
+  - Fuzz-Driven Development。
+
+## 気になったところ
+- fuzzing適用にclangだけで行けるのは素晴らしい。
+- Fuzzの対象をどこにするかには注意が必要そう。
+
+## 関連情報
+
+- [発表動画@Youtube](https://www.youtube.com/watch?v=k-Cv8Q3zWNQ&t=634s)
+- [libprotobuf-mutator](https://github.com/google/libprotobuf-mutator)
