@@ -257,3 +257,39 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
 
 - [発表動画@Youtube](https://www.youtube.com/watch?v=k-Cv8Q3zWNQ&t=634s)
 - [libprotobuf-mutator](https://github.com/google/libprotobuf-mutator)
+
+# 10 Core Guidelines You Need to Start Using Now by Kate Gregory
+
+## 概要
+
+- Core Guidelinesで直ぐに従うべきルールの紹介
+- Bikesheding(Parkinson's Law of Triviality)
+  
+  - 重要なことではなく、trivialなことに時間を割くこと。無駄な事にフォーカスしてしまいがちなこと。
+
+- Bikeshedingをやめて、ルールに従う。
+
+  - レビューのときなど、Core Guidelinesへの参照を使ってみては？
+  
+- 紹介されていたルール。
+
+ - C.45 & C.48: in-class初期化を使う。
+ - F.51: オーバーロードよりデフォルト引数。
+ - C.47: メンバ変数と初期化リストの順番を併せる。
+ - I.23: 関数の引数の数を減らす。
+ - ES.50: const castだめ。
+ - I.11: 生ポインタで所有権を移さない。
+ - F.21: 複数の値を戻すときは、strucかtupleを使う。(Structured bindings)
+ - Enum.3: enum classを使う。
+ - I.12: not_nullを使う。
+ - ES.46: gslのnarrow_castやnarrowを使う。
+
+## 気になったところ
+
+- レビューにCore Guidelinesへのリンクを使うのよさそう。GoogleでやってるTip of Weekへのリンクと同じ。
+- not_nullに関して誰か(Titus?)が問題点を指摘してたけど良く理解できなかった。
+
+## 関連情報
+
+- [発表動画@Youtube](https://www.youtube.com/watch?v=XkDEzfpdcSg)
+- [発表資料@gitub](https://github.com/CppCon/CppCon2017/blob/master/Presentations/10%20Core%20Guidelines%20You%20Need%20to%20Start%20Using%20Now/10%20Core%20Guidelines%20You%20Need%20to%20Start%20Using%20Now%20-%20Kate%20Gregory%20-%20CppCon%202017.pptx)
