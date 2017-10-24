@@ -293,3 +293,28 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
 
 - [発表動画@Youtube](https://www.youtube.com/watch?v=XkDEzfpdcSg)
 - [発表資料@gitub](https://github.com/CppCon/CppCon2017/blob/master/Presentations/10%20Core%20Guidelines%20You%20Need%20to%20Start%20Using%20Now/10%20Core%20Guidelines%20You%20Need%20to%20Start%20Using%20Now%20-%20Kate%20Gregory%20-%20CppCon%202017.pptx)
+
+# Practical Patterns with Networking TS by Michael Caisse
+
+## 概要
+
+- Networking TSの導入
+
+  - Boost.Asioベースだが違いもある。
+  - 動的にサイズを変更できる`dynamic_buffer`、`io_servie`ではなく`io_context`。
+  - Networking TSは基礎的なライブラリなので、HTTPなどのプロトコルは含んでいない。
+
+- 非同期コードは`shared_from_this`でメモリ管理。
+- Boost.MSM/SML（ステートマシン）とBoost.Spirit(パーサ)を組み合わせるとキレイな非同期コードが書けるよ。
+
+## 気になったところ
+
+- 適切なツールを選ぶ。ストリーミングAPIが一番手軽に使える。future/promiseはスレッド間通信。通信プロトコルは状態マシン。
+- ステートマシンとパーサは強力。設計を直感的に実装できる。
+
+## 関連情報
+
+- [発表動画@Youtube](https://www.youtube.com/watch?v=2UC6_rfJuAw&index=85&list=PLHTh1InhhwT6bwIpRk0ZbCA0N2p1taxd6)
+- [Boost.MSM](http://www.boost.org/doc/libs/1_65_1/libs/msm/doc/HTML/index.html)
+- [Boost.SML(Experimental)](https://github.com/boost-experimental/sml)
+- [Boost.Spirit](http://www.boost.org/doc/libs/1_65_1/libs/spirit/doc/html/index.html)
