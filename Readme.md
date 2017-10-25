@@ -318,3 +318,30 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
 - [Boost.MSM](http://www.boost.org/doc/libs/1_65_1/libs/msm/doc/HTML/index.html)
 - [Boost.SML(Experimental)](https://github.com/boost-experimental/sml)
 - [Boost.Spirit](http://www.boost.org/doc/libs/1_65_1/libs/spirit/doc/html/index.html)
+
+# Make Classes Great Again by Vinnie Falco
+
+## 概要
+
+- Boost.Beastの作者(1.66から入る)
+- ユーザがライブラリの挙動を変更できるようにtemplateを使用。Unconstraintedなテンプレートではなくコンセプトを定義。
+- コンセプトのドキュメンテーションにはExampler(必要な宣言＆契約のみの型)、またはValid Expressionの表を使用する。
+
+  - 例: Valid Expressionの表
+
+   | Expression | Type | Description |
+   | ---------- | ---- | ----------- |
+   | B::write | void(ostream&, B::value_type const&) | ストリームに値を書き出す。|
+- `enable_if`で、テンプレートに制約を掛ける。
+
+## 気になったところ
+
+- Valid Expressionの表はドキュメントとしては読みやすくて良い。。
+- 紹介した`enable_if`の例はあまり綺麗じゃなかった。"Modern C++ Interfaces"の例の方が良い。
+- Unconstraintedなテンプレートしか書いて来てなかったので反省。
+
+## 関連情報
+
+- [発表動画@Youtube](https://www.google.co.jp/url?sa=t&rct=j&q=&esrc=s&source=web&cd=4&cad=rja&uact=8&ved=0ahUKEwiH7IGs64rXAhXILpQKHc_6B4cQtwIINzAD&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DWsUnnYEKPnI&usg=AOvVaw2frRYfbHFeR2gfX7RBwE_W)
+- [発表資料@github](https://github.com/CppCon/CppCon2017/blob/master/Tutorials/Make%20Classes%20Great%20Again/Make%20Classes%20Great%20Again%20-%20Vinnie%20Falco%20-%20CppCon%202017.pdf)
+- [Boost.Beast@github](https://github.com/boostorg/beast)
