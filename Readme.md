@@ -9,12 +9,12 @@
 
 # Table of Contents
 
-[Learning and Teaching Modern C++ by Bjarne Stroustrup](#learning-and-teaching-modern-c-by-bjarne-stroustrup)
-[C++ as a "Live at Head" Language by Titus Winters](#c-as-a-live-at-head-language-by-titus-winters)
-[Programming with C++ Constraints: Background, Utility, and Gotchas by Walter E. Brown](#programming-with-c-constraints-background-utility-and-gotchas-by-walter-e-brown)
-[Meta: Thoughts on generative C++ by Herb Sutter](#meta-thoughts-on-generative-c-by-herb-sutter)
-[Modern C++ Interfaces: Complexity, Emergent Simplicy, SFINAE, and Second Order Properties by Stephen Dewhurst](#modern-c-interfaces-complexity-emergent-simplicy-sfinae-and-second-order-properties-by-stephen-dewhurst)
-[A modern formatting library for C++ by Victor Zverovich](#a-modern-formatting-library-for-c-by-victor-zverovich)
+- [Learning and Teaching Modern C++ by Bjarne Stroustrup](#learning-and-teaching-modern-c-by-bjarne-stroustrup)
+- [C++ as a "Live at Head" Language by Titus Winters](#c-as-a-live-at-head-language-by-titus-winters)
+- [Programming with C++ Constraints: Background, Utility, and Gotchas by Walter E. Brown](#programming-with-c-constraints-background-utility-and-gotchas-by-walter-e-brown)
+- [Meta: Thoughts on generative C++ by Herb Sutter](#meta-thoughts-on-generative-c-by-herb-sutter)
+- [Modern C++ Interfaces: Complexity, Emergent Simplicy, SFINAE, and Second Order Properties by Stephen Dewhurst](#modern-c-interfaces-complexity-emergent-simplicy-sfinae-and-second-order-properties-by-stephen-dewhurst)
+- [A modern formatting library for C++ by Victor Zverovich](#a-modern-formatting-library-for-c-by-victor-zverovich)
 
 ## Learning and Teaching Modern C++ by Bjarne Stroustrup
 ### 概要

@@ -14,6 +14,6 @@ awk '
      link=tolower(header)
      gsub(" ", "-", link)
      gsub(/[+":,.]/, "", link)
-     printf "[%s](#%s)\n", header, link
+     printf "- [%s](#%s)\n", header, link
 }
 '
