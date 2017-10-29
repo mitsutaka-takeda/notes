@@ -15,6 +15,10 @@
 - [Meta: Thoughts on generative C++ by Herb Sutter](#meta-thoughts-on-generative-c-by-herb-sutter)
 - [Modern C++ Interfaces: Complexity, Emergent Simplicy, SFINAE, and Second Order Properties by Stephen Dewhurst](#modern-c-interfaces-complexity-emergent-simplicy-sfinae-and-second-order-properties-by-stephen-dewhurst)
 - [A modern formatting library for C++ by Victor Zverovich](#a-modern-formatting-library-for-c-by-victor-zverovich)
+- [From security to performance to GPU programming by Sergey Zubkov](#from-security-to-performance-to-gpu-programming-by-sergey-zubkov)
+- [Fuzz or lose... by Kostya Serebryany](#fuzz-or-lose-by-kostya-serebryany)
+- [Practical Patterns with Networking TS by Michael Caisse](#practical-patterns-with-networking-ts-by-michael-caisse)
+- [Make Classes Great Again by Vinnie Falco](#make-classes-great-again-by-vinnie-falco)
 
 ## Learning and Teaching Modern C++ by Bjarne Stroustrup
 ### 概要
@@ -199,9 +203,9 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
 - [スライド](https://github.com/CppCon/CppCon2017/blob/master/Demos/A%20Modern%20Formatting%20Library%20for%20C%2B%2B/A%20Modern%20Formatting%20Library%20for%20C%2B%2B%20-%20Victor%20Zverovich%20-%20CppCon%202017.pdf)
 - [fmt@github](https://github.com/fmtlib/fmt)
 
-# From security to performance to GPU programming by Sergey Zubkov
+## From security to performance to GPU programming by Sergey Zubkov
 
-## 概要
+### 概要
 
 - allocatorの応用分野と仕組みの概要。
 
@@ -211,20 +215,21 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
   - boost::interprocess::allocator: 共有メモリにメモリを確保。allocatorを適用する場所に注意が必要。`std::scoped_allocator_adaptor`。
   - boost::compute::pinned_allocator: GPUのメモリ上に確保。
   
-## 気になったところ
+### 気になったところ
 
 - cppcon 2017でアロケータの話が数件あった。C++17でポリモーフィック・アロケータが出て来てまた盛りあがってるのか。
 - まともなカスタム・アロケータ書いたことないので書いてみたい。
 - allocatorのレポジトリが欲しい。
 
-## 関連情報
+### 関連情報
 
 - [発表動画@Youtube](https://www.youtube.com/watch?v=HdQ4aOZyuHw)
 - [Windows pagefile security risks and how to avoid them](http://searchenterprisedesktop.techtarget.com/tip/Windows-pagefile-security-risks-and-how-to-avoid-them)
 - [Controlling memory consumption with Intel Threading Building Blocks(Intel TBB) scalable allocator](https://software.intel.com/en-us/articles/controlling-memory-consumption-with-intel-threading-building-blocks-intel-tbb-scalable)
 
-# Fuzz or lose... by Kostya Serebryany
-## 概要
+## Fuzz or lose... by Kostya Serebryany
+
+### 概要
 
 - Fuzzで見つかったバグ
 
@@ -258,18 +263,19 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
   - 参照実装と最適実装の違いを発見するのに使える。
   - Fuzz-Driven Development。
 
-## 気になったところ
+### 気になったところ
+
 - fuzzing適用にclangだけで行けるのは素晴らしい。
 - Fuzzの対象をどこにするかには注意が必要そう。
 
-## 関連情報
+### 関連情報
 
 - [発表動画@Youtube](https://www.youtube.com/watch?v=k-Cv8Q3zWNQ&t=634s)
 - [libprotobuf-mutator](https://github.com/google/libprotobuf-mutator)
 
-# 10 Core Guidelines You Need to Start Using Now by Kate Gregory
+## 10 Core Guidelines You Need to Start Using Now by Kate Gregory
 
-## 概要
+### 概要
 
 - Core Guidelinesで直ぐに従うべきルールの紹介
 - Bikesheding(Parkinson's Law of Triviality)
@@ -293,19 +299,19 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
  - I.12: not_nullを使う。
  - ES.46: gslのnarrow_castやnarrowを使う。
 
-## 気になったところ
+### 気になったところ
 
 - レビューにCore Guidelinesへのリンクを使うのよさそう。GoogleでやってるTip of Weekへのリンクと同じ。
 - not_nullに関して誰か(Titus?)が問題点を指摘してたけど良く理解できなかった。
 
-## 関連情報
+### 関連情報
 
 - [発表動画@Youtube](https://www.youtube.com/watch?v=XkDEzfpdcSg)
 - [発表資料@gitub](https://github.com/CppCon/CppCon2017/blob/master/Presentations/10%20Core%20Guidelines%20You%20Need%20to%20Start%20Using%20Now/10%20Core%20Guidelines%20You%20Need%20to%20Start%20Using%20Now%20-%20Kate%20Gregory%20-%20CppCon%202017.pptx)
 
-# Practical Patterns with Networking TS by Michael Caisse
+## Practical Patterns with Networking TS by Michael Caisse
 
-## 概要
+### 概要
 
 - Networking TSの導入
 
@@ -316,21 +322,21 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
 - 非同期コードは`shared_from_this`でメモリ管理。
 - Boost.MSM/SML（ステートマシン）とBoost.Spirit(パーサ)を組み合わせるとキレイな非同期コードが書けるよ。
 
-## 気になったところ
+### 気になったところ
 
 - 適切なツールを選ぶ。ストリーミングAPIが一番手軽に使える。future/promiseはスレッド間通信。通信プロトコルは状態マシン。
 - ステートマシンとパーサは強力。設計を直感的に実装できる。
 
-## 関連情報
+### 関連情報
 
 - [発表動画@Youtube](https://www.youtube.com/watch?v=2UC6_rfJuAw&index=85&list=PLHTh1InhhwT6bwIpRk0ZbCA0N2p1taxd6)
 - [Boost.MSM](http://www.boost.org/doc/libs/1_65_1/libs/msm/doc/HTML/index.html)
 - [Boost.SML(Experimental)](https://github.com/boost-experimental/sml)
 - [Boost.Spirit](http://www.boost.org/doc/libs/1_65_1/libs/spirit/doc/html/index.html)
 
-# Make Classes Great Again by Vinnie Falco
+## Make Classes Great Again by Vinnie Falco
 
-## 概要
+### 概要
 
 - Boost.Beastの作者(1.66から入る)
 - ユーザがライブラリの挙動を変更できるようにtemplateを使用。Unconstraintedなテンプレートではなくコンセプトを定義。
@@ -343,13 +349,13 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
    | B::write | void(ostream&, B::value_type const&) | ストリームに値を書き出す。|
 - `enable_if`で、テンプレートに制約を掛ける。
 
-## 気になったところ
+### 気になったところ
 
 - Valid Expressionの表はドキュメントとしては読みやすくて良い。。
 - 紹介した`enable_if`の例はあまり綺麗じゃなかった。"Modern C++ Interfaces"の例の方が良い。
 - Unconstraintedなテンプレートしか書いて来てなかったので反省。
 
-## 関連情報
+### 関連情報
 
 - [発表動画@Youtube](https://www.google.co.jp/url?sa=t&rct=j&q=&esrc=s&source=web&cd=4&cad=rja&uact=8&ved=0ahUKEwiH7IGs64rXAhXILpQKHc_6B4cQtwIINzAD&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DWsUnnYEKPnI&usg=AOvVaw2frRYfbHFeR2gfX7RBwE_W)
 - [発表資料@github](https://github.com/CppCon/CppCon2017/blob/master/Tutorials/Make%20Classes%20Great%20Again/Make%20Classes%20Great%20Again%20-%20Vinnie%20Falco%20-%20CppCon%202017.pdf)
