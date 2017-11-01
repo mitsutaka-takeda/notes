@@ -19,6 +19,7 @@
 - [Fuzz or lose... by Kostya Serebryany](#fuzz-or-lose-by-kostya-serebryany)
 - [Practical Patterns with Networking TS by Michael Caisse](#practical-patterns-with-networking-ts-by-michael-caisse)
 - [Make Classes Great Again by Vinnie Falco](#make-classes-great-again-by-vinnie-falco)
+- [Postmodern immutable data structures by Juan Pedro Bolivar Puente](#postmodern-immutable-data-structures-by-juan-pedro-bolivar-puente)
 
 ## Learning and Teaching Modern C++ by Bjarne Stroustrup
 ### 概要
@@ -75,7 +76,7 @@
 - Conceptの紹介。Conceptは要件。Precondition/Narrow&Wide contractなどの用語との比較。
 
    - 実行時(precondition)/コンパイル時(Concept)
- 
+
 - constraintはコンパイル時predicate。Conceptはconstraintの集合。
 - enable_ifとConceptの違い。
 
@@ -104,12 +105,12 @@
    - Reflectionは、コンパイル時に型情報をクエリできる。
    - Compile-time codeは、コンパイル時のコーディング方法。
    - Injectionは、コンパイル時コードの結果からコードを生成できる。
- 
+
 - Metaclassの長所。
 
    - 言語仕様を変更せずに、言語に機能追加ができる。
    - 自然言語よりコードの方が簡潔に正確に記述できる。
-   
+
 - Metaclassの応用。
 
    - interface、value typeなど慣習で守らている規約をコードで表現できる。
@@ -145,12 +146,12 @@
 - Semanticsも重要だが、Syntaxも重要
 
   - templated typedefでSyntaxを簡単に。
-  
+
 - Self-Identification。
 
   - 型が自分の機能を相手に伝えるための型。SFINAEでSelf-Identificationを利用してオーバーロードを制限できる。
   - 標準の関数オブジェクトの`is_transparent`。Dan Saksの`is_enum_container`。
-  
+
 - Predicate Composition
 
   - type listとpredicateのcompositionはtemplate variableを使用すると簡単に実装できる。
@@ -184,7 +185,7 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
    - バイナリ・サイズはprintfと同等。
    - pythonやrustのフォーマットと同様の記法。
    - AllocationなしのAPIを用意。
-   
+
 - fmtライブラリの実装について。
 
    - type erasureでバイナリ・サイズとコンパイル時間を節約。folly::formatと比較してバイナリ・サイズは10分の1くらい。
@@ -214,7 +215,7 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
   - tbb::scalable_allocator: スレッド固有のallocator。メモリ確保のコンテンションが少くなりスケールする。
   - boost::interprocess::allocator: 共有メモリにメモリを確保。allocatorを適用する場所に注意が必要。`std::scoped_allocator_adaptor`。
   - boost::compute::pinned_allocator: GPUのメモリ上に確保。
-  
+
 ### 気になったところ
 
 - cppcon 2017でアロケータの話が数件あった。C++17でポリモーフィック・アロケータが出て来てまた盛りあがってるのか。
@@ -279,13 +280,13 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
 
 - Core Guidelinesで直ぐに従うべきルールの紹介
 - Bikesheding(Parkinson's Law of Triviality)
-  
+
   - 重要なことではなく、trivialなことに時間を割くこと。無駄な事にフォーカスしてしまいがちなこと。
 
 - Bikeshedingをやめて、ルールに従う。
 
   - レビューのときなど、Core Guidelinesへの参照を使ってみては？
-  
+
 - 紹介されていたルール。
 
  - C.45 & C.48: in-class初期化を使う。
@@ -360,3 +361,40 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
 - [発表動画@Youtube](https://www.google.co.jp/url?sa=t&rct=j&q=&esrc=s&source=web&cd=4&cad=rja&uact=8&ved=0ahUKEwiH7IGs64rXAhXILpQKHc_6B4cQtwIINzAD&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DWsUnnYEKPnI&usg=AOvVaw2frRYfbHFeR2gfX7RBwE_W)
 - [発表資料@github](https://github.com/CppCon/CppCon2017/blob/master/Tutorials/Make%20Classes%20Great%20Again/Make%20Classes%20Great%20Again%20-%20Vinnie%20Falco%20-%20CppCon%202017.pdf)
 - [Boost.Beast@github](https://github.com/boostorg/beast)
+
+## Postmodern immutable data structures by Juan Pedro Bolivar Puente
+
+### 概要
+
+- Immutable/Persistent Data Structureの紹介。
+  - 挿入・削除・要素の編集など変更時に古いバージョンは残しつつ新しいバージョンを作成する。
+  - immerライブラリのドキュメンテーションからの抜粋。
+  ```cpp
+  #include <immer/vector.hpp>
+  int main()
+  {
+    const auto v0 = immer::vector<int>{};
+    const auto v1 = v0.push_back(13);// 挿入時にv0に影響しない。
+    assert(v0.size() == 0 && v1.size() == 1 && v1[0] == 13);
+
+    const auto v2 = v1.set(0, 42);// 既存の要素を変更しても影響しない。
+    assert(v1[0] == 13 && v2[0] == 42);
+  }
+  ```
+- Value Semanticsの問題点は、大量のコピーが必要で性能に影響する。Immutable/Persisntent Data Structureでモデリングすると相性が良い。
+- C++向けImmutable/Persistent Data Structureライブラリimmer。
+  - IFが標準のSTLコンテナに準拠。
+  - immerでは`vector`と`flex_vector`を提供。
+
+### 気になったところ
+
+- 過去のバージョンを保持し続けるImmutable/Persistent Data Structureは、Event Sourcingと通じるものが在る。コマンドを永続化して、コマンドとそれを実行したバージョンの紐付けがあれば、Event Sourcingと同じようなことができるのかな？
+- 数GBのファイルを簡単に扱えるewigスゴイ。
+- Persistent Data Structureって、オブジェクトが全部オンメモリじゃないと動かないのだろうか。
+
+### 関連情報
+
+- [発表動画@Youtube](https://www.youtube.com/watch?v=sPhpelUfu8Q)
+- [immer@github](https://github.com/arximboldi/immer)
+- [ewig@github](https://github.com/arximboldi/ewig)
+- [Purely Functional Data Structure](https://www.amazon.com/Purely-Functional-Structures-Chris-Okasaki/dp/0521663504)
