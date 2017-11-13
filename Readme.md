@@ -20,6 +20,7 @@
 - [Practical Patterns with Networking TS by Michael Caisse](#practical-patterns-with-networking-ts-by-michael-caisse)
 - [Make Classes Great Again by Vinnie Falco](#make-classes-great-again-by-vinnie-falco)
 - [Postmodern immutable data structures by Juan Pedro Bolivar Puente](#postmodern-immutable-data-structures-by-juan-pedro-bolivar-puente)
+- [Unicode Strings: Why the Implementation Matters by Barbara Geller & Ansel Sermersheim](#unicode-strings-why-the-implementation-matters-by-barbara-geller-&-ansel-sermersheim)
 
 ## Learning and Teaching Modern C++ by Bjarne Stroustrup
 ### 概要
@@ -398,3 +399,27 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
 - [immer@github](https://github.com/arximboldi/immer)
 - [ewig@github](https://github.com/arximboldi/ewig)
 - [Purely Functional Data Structure](https://www.amazon.com/Purely-Functional-Structures-Chris-Okasaki/dp/0521663504)
+
+## Unicode Strings: Why the Implementation Matters by Barbara Geller & Ansel Sermersheim
+
+### 概要
+
+- Character Set, Coded Character Set, Code Point/Position/unitなど用語の説明
+  - シンボル'A'は、Code PointのU+0041へマッピングされている。
+  - UTF-8ではU+0041は0x41で表現。Utf-16では0x0041にエンコードされる。
+- C++ STLでのUtf-8のサポート状況。
+  - std::stringはCode Unitが8-bitで、Utf-8の文字列を保持できるけど、エンコーディング情報を持っていない。
+- CsString(発表者が作成したライブラリ)は、8-bitストレージでエンコーディング情報を保持している。
+- C++のUtf-8文字列リテラルは、const char[]型なのでエンコーディング情報が失われてしまう。APIに文字列リテラルが使いづらい。
+
+### 気になったところ
+
+- Utf-8を上手く扱えないのがC++の弱点の1つなので改善して欲しい。
+- STLのアルゴリズムがUtf-8の文字列型を扱えると最高。
+
+### 関連情報
+
+- [発表動画@Youtube](https://www.youtube.com/watch?v=ysh2B6ZgNXk&index=21&list=PLHTh1InhhwT6bwIpRk0ZbCA0N2p1taxd6)
+- [Containers and Strings Why the Implementation Matters](https://www.google.co.jp/url?sa=t&rct=j&q=&esrc=s&source=web&cd=4&cad=rja&uact=8&ved=0ahUKEwijnbeW4LrXAhUETbwKHYXUAToQFgg0MAM&url=http%3A%2F%2Fwww.copperspice.com%2Fpdf%2FCsString-CppNow-2017.pdf&usg=AOvVaw27je4B-n7yRitcgpVD9G2Y)
+- [CsString@Github](https://github.com/copperspice/cs_string)
+
