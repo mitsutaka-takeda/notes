@@ -21,6 +21,8 @@
 - [Make Classes Great Again by Vinnie Falco](#make-classes-great-again-by-vinnie-falco)
 - [Postmodern immutable data structures by Juan Pedro Bolivar Puente](#postmodern-immutable-data-structures-by-juan-pedro-bolivar-puente)
 - [Unicode Strings: Why the Implementation Matters by Barbara Geller & Ansel Sermersheim](#unicode-strings-why-the-implementation-matters-by-barbara-geller-&-ansel-sermersheim)
+- [Allocators: The Good Parts by Pablo Halpern](#allocators-the-good-parts-by-pablo-halpern)
+
 
 ## Learning and Teaching Modern C++ by Bjarne Stroustrup
 ### 概要
@@ -423,3 +425,31 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
 - [Containers and Strings Why the Implementation Matters](https://www.google.co.jp/url?sa=t&rct=j&q=&esrc=s&source=web&cd=4&cad=rja&uact=8&ved=0ahUKEwijnbeW4LrXAhUETbwKHYXUAToQFgg0MAM&url=http%3A%2F%2Fwww.copperspice.com%2Fpdf%2FCsString-CppNow-2017.pdf&usg=AOvVaw27je4B-n7yRitcgpVD9G2Y)
 - [CsString@Github](https://github.com/copperspice/cs_string)
 
+## Allocators: The Good Parts by Pablo Halpern
+
+### 概要
+
+- Allocatorの歴史。Allocatorをテンプレートにしたのが失敗だった。
+- `test_memory_reousrce`の実装を通じて、どのようにC++17でアロケータとアロケータを使ったコンテナを実装できるかの説明
+- `polymorphic_allocator<byte>`を使うと、アロケータの実装が大幅に簡略化できる。
+- アロケータを使ったコンテナの実装時の注意点とイディオム。
+  - 要素を含むノードをallocate、要素自体はallocateされた場所でconstruct。
+  - move演算子ではallocatorをmoveしちゃいけない。
+  - copy/moveセマンティックスの実装はallocatorの扱いに気をつける。
+
+### 気になったところ
+
+- 無名Union使うとコンストラクタの呼び出し回避できる。下のコードではnodeをインスタンス化しても、m_valueのコンストラクタは呼ばれない。
+  ```c++
+  template <typename Tp>>
+  struct node : node_base<Tp> {
+    union {
+      Tp m_value;
+    }
+  };
+  ```
+
+### 関連情報
+
+- [発表動画@Youtube](https://www.youtube.com/watch?v=v3dz-AKOVL8)
+- [サンプルコード@gihtub](https://github.com/phalpern/CppCon2017Code)
