@@ -22,7 +22,7 @@
 - [Postmodern immutable data structures by Juan Pedro Bolivar Puente](#postmodern-immutable-data-structures-by-juan-pedro-bolivar-puente)
 - [Unicode Strings: Why the Implementation Matters by Barbara Geller & Ansel Sermersheim](#unicode-strings-why-the-implementation-matters-by-barbara-geller-&-ansel-sermersheim)
 - [Allocators: The Good Parts by Pablo Halpern](#allocators-the-good-parts-by-pablo-halpern)
-
+- [std::exchange Idioms by Ben Deane](#stdexchange-idioms-by-ben-deane)
 
 ## Learning and Teaching Modern C++ by Bjarne Stroustrup
 ### 概要
@@ -453,3 +453,20 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
 
 - [発表動画@Youtube](https://www.youtube.com/watch?v=v3dz-AKOVL8)
 - [サンプルコード@gihtub](https://github.com/phalpern/CppCon2017Code)
+
+## std::exchange Idioms by Ben Deane
+
+### 概要
+
+- C++14でstd::exchangeが導入された。
+- std::exchangeは、変数への参照と新しい値を取り、変数へ新しい値を代入し、変数の古い値を返す。
+- std::swapと違い、新しい値がへの代入が不要になるので、1 move分節約できる。
+
+### 気になったところ
+
+- カンマ演算子でmutexのロックをとるのはよくやった。
+
+### 関連情報
+
+- [発表動画@Youtube](https://www.youtube.com/watch?v=OqJUBIJOojI&list=PLHTh1InhhwT55y4fRRTBIelxnRSZ8G5yg&index=43)
+- [std::exchange@cppreference.com](http://en.cppreference.com/w/cpp/utility/exchange)
