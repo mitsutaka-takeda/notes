@@ -470,3 +470,30 @@ using similar = std::is_same<std::decay_t<<S>, std::decay_t<T>>;
 
 - [発表動画@Youtube](https://www.youtube.com/watch?v=OqJUBIJOojI&list=PLHTh1InhhwT55y4fRRTBIelxnRSZ8G5yg&index=43)
 - [std::exchange@cppreference.com](http://en.cppreference.com/w/cpp/utility/exchange)
+
+## Refactor or Die by Mikhail Matrosov
+
+### 概要
+
+- チェンジのリスク。右に行くほどバグを混入したときのリスクが高い。
+ - Function  < Class  < Library  < Application < User Behavior < Business Process
+ - Library Levelまでで動作を変えないため、Refactoringはリスクが低い。
+- バグ・フィックスや機能追加の作業時に、まず既存コードのRefactoringを行う。
+ - バグを見つけやすくする・機能追加しやすいように、まず既存コードの構成を変える。長い関数の分割など。そのあと、バグ・フィックスや機能追加を行う。
+- レビュアーの時間は貴重なため、コミットを以下に分類して行ない、コミットメッセージにマークを付ける。レビュアーはインパクトの大きいところを重点的に見る。
+   | 分類 | インパクト | コミットメッセージ |
+   | ---- | ---- | -------------------- |
+   | Modification | Unlimited | * |
+   | Bug fix | Unlimited | - |
+   | New feature | Unlimited | + |
+   | ---- | ---- | -------------------- |
+   | Refactoring | Limited | ~ |
+   | Trivial change | Limited | = |
+
+### 気になったところ
+
+- コミットの種類を明確にして、コミット・メッセージに記録するのは良いアイデア。
+
+### 関連情報
+
+- [発表動画@Youtube](https://www.youtube.com/watch?v=fzmjXK9JZ9o&list=PLHTh1InhhwT55y4fRRTBIelxnRSZ8G5yg&index=47)
